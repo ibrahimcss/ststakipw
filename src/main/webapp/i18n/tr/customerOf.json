@@ -1,0 +1,28 @@
+{
+  "ststakipApp": {
+    "customerOf": {
+      "home": {
+        "title": "Customer Ofs",
+        "createLabel": "Create a new Customer Of",
+        "createOrEditLabel": "Create or edit a Customer Of",
+        "search": "Search for Customer Of",
+        "notFound": "No Customer Ofs found"
+      },
+      "created": "A new Customer Of is created with identifier {{ param }}",
+      "updated": "A Customer Of is updated with identifier {{ param }}",
+      "deleted": "A Customer Of is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Customer Of {{ id }}?"
+      },
+      "detail": {
+        "title": "Customer Of"
+      },
+      "tcId": "Tc Id",
+      "phone": "Phone",
+      "enabled": "Enabled",
+      "sex": "Sex",
+      "customer": "Customer",
+      "company": "Company"
+    }
+  }
+}

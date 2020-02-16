@@ -1,0 +1,167 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-student-tracking-heading" jhiTranslate="ststakipApp.studentTracking.home.createOrEditLabel">Create or edit a Student Tracking</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ststakipApp.studentTracking.createdAt" for="field_createdAt">Created At</label>
+                    <div class="d-flex">
+                        <input id="field_createdAt" type="datetime-local" class="form-control" name="createdAt" formControlName="createdAt" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('createdAt')!.invalid && (editForm.get('createdAt')!.dirty || editForm.get('createdAt')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('createdAt')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('createdAt')?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ststakipApp.studentTracking.photo" for="field_photo">Photo</label>
+                    <div>
+                        <img [src]="'data:' + editForm.get('photoContentType')!.value + ';base64,' + editForm.get('photo')!.value" style="max-height: 100px;" *ngIf="editForm.get('photo')!.value" alt="studentTracking image"/>
+                        <div *ngIf="editForm.get('photo')!.value" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{ editForm.get('photoContentType')!.value }}, {{ byteSize(editForm.get('photo')!.value) }}</span>
+                            <button type="button" (click)="clearInputImage('photo', 'photoContentType', 'file_photo')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_photo" (change)="setFileData($event, 'photo', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="photo" id="field_photo"
+                           formControlName="photo"/>
+                    <input type="hidden" class="form-control" name="photoContentType" id="field_photoContentType"
+                           formControlName="photoContentType" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ststakipApp.studentTracking.lon" for="field_lon">Lon</label>
+                    <input type="number" class="form-control" name="lon" id="field_lon"
+                           formControlName="lon"/>
+                    <div *ngIf="editForm.get('lon')!.invalid && (editForm.get('lon')!.dirty || editForm.get('lon')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('lon')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('lon')?.errors?.min" jhiTranslate="entity.validation.min" [translateValues]="{ min: -180 }">
+                            This field should be at least -180.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('lon')?.errors?.max" jhiTranslate="entity.validation.max" [translateValues]="{ max: 180 }">
+                            This field cannot be more than 180.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('lon')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ststakipApp.studentTracking.lat" for="field_lat">Lat</label>
+                    <input type="number" class="form-control" name="lat" id="field_lat"
+                           formControlName="lat"/>
+                    <div *ngIf="editForm.get('lat')!.invalid && (editForm.get('lat')!.dirty || editForm.get('lat')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('lat')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('lat')?.errors?.min" jhiTranslate="entity.validation.min" [translateValues]="{ min: -90 }">
+                            This field should be at least -90.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('lat')?.errors?.max" jhiTranslate="entity.validation.max" [translateValues]="{ max: 90 }">
+                            This field cannot be more than 90.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('lat')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ststakipApp.studentTracking.tStep" for="field_tStep">T Step</label>
+                    <select class="form-control" name="tStep" formControlName="tStep" id="field_tStep">
+                        <option value="ArrivalBoarding">{{ 'ststakipApp.TrackingStep.ArrivalBoarding' | translate }}</option>
+                        <option value="ArrivalLanding">{{ 'ststakipApp.TrackingStep.ArrivalLanding' | translate }}</option>
+                        <option value="ReturnBoarding">{{ 'ststakipApp.TrackingStep.ReturnBoarding' | translate }}</option>
+                        <option value="ReturnLanding">{{ 'ststakipApp.TrackingStep.ReturnLanding' | translate }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('tStep')!.invalid && (editForm.get('tStep')!.dirty || editForm.get('tStep')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('tStep')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ststakipApp.studentTracking.studentToTravelPath" for="field_studentToTravelPath">Student To Travel Path</label>
+                    <select class="form-control" id="field_studentToTravelPath" name="studentToTravelPath" formControlName="studentToTravelPathId">
+                        <option *ngIf="!editForm.get('studentToTravelPathId')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="studentToTravelPathOption.id" *ngFor="let studentToTravelPathOption of studenttotravelpaths; trackBy: trackById">{{ studentToTravelPathOption.id }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('studentToTravelPathId')!.invalid && (editForm.get('studentToTravelPathId')!.dirty || editForm.get('studentToTravelPathId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('studentToTravelPathId')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ststakipApp.studentTracking.vehicle" for="field_vehicle">Vehicle</label>
+                    <select class="form-control" id="field_vehicle" name="vehicle" formControlName="vehicleId">
+                        <option *ngIf="!editForm.get('vehicleId')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="vehicleOption.id" *ngFor="let vehicleOption of vehicles; trackBy: trackById">{{ vehicleOption.licencePlate }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('vehicleId')!.invalid && (editForm.get('vehicleId')!.dirty || editForm.get('vehicleId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('vehicleId')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ststakipApp.studentTracking.student" for="field_student">Student</label>
+                    <select class="form-control" id="field_student" name="student" formControlName="studentId">
+                        <option *ngIf="!editForm.get('studentId')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="studentOption.id" *ngFor="let studentOption of students; trackBy: trackById">{{ studentOption.tcId }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('studentId')!.invalid && (editForm.get('studentId')!.dirty || editForm.get('studentId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('studentId')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

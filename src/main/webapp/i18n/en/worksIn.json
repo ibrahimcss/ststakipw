@@ -1,0 +1,27 @@
+{
+  "ststakipApp": {
+    "worksIn": {
+      "home": {
+        "title": "Works Ins",
+        "createLabel": "Create a new Works In",
+        "createOrEditLabel": "Create or edit a Works In",
+        "search": "Search for Works In",
+        "notFound": "No Works Ins found"
+      },
+      "created": "A new Works In is created with identifier {{ param }}",
+      "updated": "A Works In is updated with identifier {{ param }}",
+      "deleted": "A Works In is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Works In {{ id }}?"
+      },
+      "detail": {
+        "title": "Works In"
+      },
+      "tcId": "Tc Id",
+      "phone": "Phone",
+      "enabled": "Enabled",
+      "employee": "Employee",
+      "company": "Company"
+    }
+  }
+}

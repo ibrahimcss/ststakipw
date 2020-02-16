@@ -1,0 +1,60 @@
+{
+    "name": "OrderPaket",
+    "fields": [
+        {
+            "fieldName": "orderedDate",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "isExpired",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "startDate",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "endDate",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "company",
+            "otherEntityRelationshipName": "orderPaket",
+            "relationshipValidateRules": "required",
+            "relationshipName": "company",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "paketDetay",
+            "otherEntityRelationshipName": "orderPaket",
+            "relationshipValidateRules": "required",
+            "relationshipName": "paketDetay",
+            "otherEntityField": "name"
+        }
+    ],
+    "changelogDate": "20200216155232",
+    "entityTableName": "order_paket",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": [
+        "ststakip"
+    ]
+}

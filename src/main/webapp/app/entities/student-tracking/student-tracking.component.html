@@ -1,0 +1,120 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="ststakipApp.studentTracking.home.title">Student Trackings</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-student-tracking" [routerLink]="['/student-tracking/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span class="hidden-sm-down"  jhiTranslate="ststakipApp.studentTracking.home.createLabel">
+            Create a new Student Tracking
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'ststakipApp.studentTracking.home.search' | translate }}">
+
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <fa-icon icon="search"></fa-icon>
+                    </button>
+
+                    <button class="input-group-append btn btn-danger" (click)="search('')" *ngIf="currentSearch">
+                        <fa-icon icon="trash-alt"></fa-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="studentTrackings?.length === 0">
+        <span jhiTranslate="ststakipApp.studentTracking.home.notFound">No studentTrackings found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="studentTrackings?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="createdAt"><span jhiTranslate="ststakipApp.studentTracking.createdAt">Created At</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="photo"><span jhiTranslate="ststakipApp.studentTracking.photo">Photo</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="lon"><span jhiTranslate="ststakipApp.studentTracking.lon">Lon</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="lat"><span jhiTranslate="ststakipApp.studentTracking.lat">Lat</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="tStep"><span jhiTranslate="ststakipApp.studentTracking.tStep">T Step</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="studentToTravelPathId"><span jhiTranslate="ststakipApp.studentTracking.studentToTravelPath">Student To Travel Path</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="vehicleLicencePlate"><span jhiTranslate="ststakipApp.studentTracking.vehicle">Vehicle</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="studentTcId"><span jhiTranslate="ststakipApp.studentTracking.student">Student</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let studentTracking of studentTrackings ;trackBy: trackId">
+                    <td><a [routerLink]="['/student-tracking', studentTracking.id, 'view']">{{ studentTracking.id }}</a></td>
+                    <td>{{ studentTracking.createdAt | date:'medium' }}</td>
+                    <td>
+                        <a *ngIf="studentTracking.photo" (click)="openFile(studentTracking.photoContentType, studentTracking.photo)">
+                            <img [src]="'data:' + studentTracking.photoContentType + ';base64,' + studentTracking.photo" style="max-height: 30px;" alt="studentTracking image"/>
+                        </a>
+                        <span *ngIf="studentTracking.photo">{{ studentTracking.photoContentType }}, {{ byteSize(studentTracking.photo) }}</span>
+                    </td>
+                    <td>{{ studentTracking.lon }}</td>
+                    <td>{{ studentTracking.lat }}</td>
+                    <td jhiTranslate="{{ 'ststakipApp.TrackingStep.' + studentTracking.tStep }}">{{ studentTracking.tStep }}</td>
+                    <td>
+                        <div *ngIf="studentTracking.studentToTravelPathId">
+                            <a [routerLink]="['/student-to-travel-path', studentTracking.studentToTravelPathId , 'view']" >{{ studentTracking.studentToTravelPathId }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="studentTracking.vehicleId">
+                            <a [routerLink]="['/vehicle', studentTracking.vehicleId , 'view']" >{{ studentTracking.vehicleLicencePlate }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="studentTracking.studentId">
+                            <a [routerLink]="['/student', studentTracking.studentId , 'view']" >{{ studentTracking.studentTcId }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/student-tracking', studentTracking.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/student-tracking', studentTracking.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(studentTracking)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="studentTrackings?.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

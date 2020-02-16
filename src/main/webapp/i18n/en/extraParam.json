@@ -1,0 +1,25 @@
+{
+  "ststakipApp": {
+    "extraParam": {
+      "home": {
+        "title": "Extra Params",
+        "createLabel": "Create a new Extra Param",
+        "createOrEditLabel": "Create or edit a Extra Param",
+        "search": "Search for Extra Param",
+        "notFound": "No Extra Params found"
+      },
+      "created": "A new Extra Param is created with identifier {{ param }}",
+      "updated": "A Extra Param is updated with identifier {{ param }}",
+      "deleted": "A Extra Param is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Extra Param {{ id }}?"
+      },
+      "detail": {
+        "title": "Extra Param"
+      },
+      "key": "Key",
+      "value": "Value",
+      "company": "Company"
+    }
+  }
+}

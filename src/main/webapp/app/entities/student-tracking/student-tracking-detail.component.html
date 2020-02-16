@@ -1,0 +1,69 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="studentTracking">
+            <h2><span jhiTranslate="ststakipApp.studentTracking.detail.title">Student Tracking</span> {{ studentTracking.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="ststakipApp.studentTracking.createdAt">Created At</span></dt>
+                <dd>
+                    <span>{{ studentTracking.createdAt }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.studentTracking.photo">Photo</span></dt>
+                <dd>
+                    <div *ngIf="studentTracking.photo">
+                        <a (click)="openFile(studentTracking.photoContentType!, studentTracking.photo)">
+                            <img [src]="'data:' + studentTracking.photoContentType + ';base64,' + studentTracking.photo" style="max-width: 100%;" alt="studentTracking image"/>
+                        </a>
+                        {{ studentTracking.photoContentType }}, {{ byteSize(studentTracking.photo) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.studentTracking.lon">Lon</span></dt>
+                <dd>
+                    <span>{{ studentTracking.lon }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.studentTracking.lat">Lat</span></dt>
+                <dd>
+                    <span>{{ studentTracking.lat }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.studentTracking.tStep">T Step</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'ststakipApp.TrackingStep.' + studentTracking.tStep }}">{{ studentTracking.tStep }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.studentTracking.studentToTravelPath">Student To Travel Path</span></dt>
+                <dd>
+                    <div *ngIf="studentTracking.studentToTravelPathId">
+                        <a [routerLink]="['/student-to-travel-path', studentTracking.studentToTravelPathId, 'view']">{{ studentTracking.studentToTravelPathId }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.studentTracking.vehicle">Vehicle</span></dt>
+                <dd>
+                    <div *ngIf="studentTracking.vehicleId">
+                        <a [routerLink]="['/vehicle', studentTracking.vehicleId, 'view']">{{ studentTracking.vehicleLicencePlate }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.studentTracking.student">Student</span></dt>
+                <dd>
+                    <div *ngIf="studentTracking.studentId">
+                        <a [routerLink]="['/student', studentTracking.studentId, 'view']">{{ studentTracking.studentTcId }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/student-tracking', studentTracking.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

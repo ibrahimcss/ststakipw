@@ -1,0 +1,59 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="paketDetay">
+            <h2><span jhiTranslate="ststakipApp.paketDetay.detail.title">Paket Detay</span> {{ paketDetay.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="ststakipApp.paketDetay.name">Name</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'ststakipApp.PaketEnum.' + paketDetay.name }}">{{ paketDetay.name }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.paketDetay.description">Description</span></dt>
+                <dd>
+                    <span>{{ paketDetay.description }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.paketDetay.price">Price</span></dt>
+                <dd>
+                    <span>{{ paketDetay.price }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.paketDetay.vehicleQuota">Vehicle Quota</span></dt>
+                <dd>
+                    <span>{{ paketDetay.vehicleQuota }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.paketDetay.photo">Photo</span></dt>
+                <dd>
+                    <div *ngIf="paketDetay.photo">
+                        <a (click)="openFile(paketDetay.photoContentType!, paketDetay.photo)">
+                            <img [src]="'data:' + paketDetay.photoContentType + ';base64,' + paketDetay.photo" style="max-width: 100%;" alt="paketDetay image"/>
+                        </a>
+                        {{ paketDetay.photoContentType }}, {{ byteSize(paketDetay.photo) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.paketDetay.enabled">Enabled</span></dt>
+                <dd>
+                    <span>{{ paketDetay.enabled }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.paketDetay.year">Year</span></dt>
+                <dd>
+                    <span>{{ paketDetay.year }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/paket-detay', paketDetay.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

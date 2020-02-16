@@ -1,0 +1,10 @@
+{
+  "ststakipApp": {
+    "PaketEnum": {
+      "null": "",
+      "Basic": "Basic",
+      "Silver": "Silver",
+      "Gold": "Gold"
+    }
+  }
+}

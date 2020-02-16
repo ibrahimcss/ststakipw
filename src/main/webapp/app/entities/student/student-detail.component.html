@@ -1,0 +1,71 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="student">
+            <h2><span jhiTranslate="ststakipApp.student.detail.title">Student</span> {{ student.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="ststakipApp.student.tcId">Tc Id</span></dt>
+                <dd>
+                    <span>{{ student.tcId }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.student.firstName">First Name</span></dt>
+                <dd>
+                    <span>{{ student.firstName }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.student.lastName">Last Name</span></dt>
+                <dd>
+                    <span>{{ student.lastName }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.student.birthDate">Birth Date</span></dt>
+                <dd>
+                    <span>{{ student.birthDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.student.address">Address</span></dt>
+                <dd>
+                    <span>{{ student.address }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.student.lon">Lon</span></dt>
+                <dd>
+                    <span>{{ student.lon }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.student.lat">Lat</span></dt>
+                <dd>
+                    <span>{{ student.lat }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.student.phone">Phone</span></dt>
+                <dd>
+                    <span>{{ student.phone }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.student.photo">Photo</span></dt>
+                <dd>
+                    <div *ngIf="student.photo">
+                        <a (click)="openFile(student.photoContentType!, student.photo)">
+                            <img [src]="'data:' + student.photoContentType + ';base64,' + student.photo" style="max-width: 100%;" alt="student image"/>
+                        </a>
+                        {{ student.photoContentType }}, {{ byteSize(student.photo) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.student.sex">Sex</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'ststakipApp.Sex.' + student.sex }}">{{ student.sex }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/student', student.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

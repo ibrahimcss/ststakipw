@@ -1,0 +1,109 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="ststakipApp.studentToTravelPath.home.title">Student To Travel Paths</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-student-to-travel-path" [routerLink]="['/student-to-travel-path/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span class="hidden-sm-down"  jhiTranslate="ststakipApp.studentToTravelPath.home.createLabel">
+            Create a new Student To Travel Path
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'ststakipApp.studentToTravelPath.home.search' | translate }}">
+
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <fa-icon icon="search"></fa-icon>
+                    </button>
+
+                    <button class="input-group-append btn btn-danger" (click)="search('')" *ngIf="currentSearch">
+                        <fa-icon icon="trash-alt"></fa-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="studentToTravelPaths?.length === 0">
+        <span jhiTranslate="ststakipApp.studentToTravelPath.home.notFound">No studentToTravelPaths found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="studentToTravelPaths?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="boardingTimeOfArrival"><span jhiTranslate="ststakipApp.studentToTravelPath.boardingTimeOfArrival">Boarding Time Of Arrival</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="landingTimeOfArrival"><span jhiTranslate="ststakipApp.studentToTravelPath.landingTimeOfArrival">Landing Time Of Arrival</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="boardingTimeOfReturn"><span jhiTranslate="ststakipApp.studentToTravelPath.boardingTimeOfReturn">Boarding Time Of Return</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="landingTimeOfReturn"><span jhiTranslate="ststakipApp.studentToTravelPath.landingTimeOfReturn">Landing Time Of Return</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="enabled"><span jhiTranslate="ststakipApp.studentToTravelPath.enabled">Enabled</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="studentTcId"><span jhiTranslate="ststakipApp.studentToTravelPath.student">Student</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="travelPathName"><span jhiTranslate="ststakipApp.studentToTravelPath.travelPath">Travel Path</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let studentToTravelPath of studentToTravelPaths ;trackBy: trackId">
+                    <td><a [routerLink]="['/student-to-travel-path', studentToTravelPath.id, 'view']">{{ studentToTravelPath.id }}</a></td>
+                    <td>{{ studentToTravelPath.boardingTimeOfArrival | date:'medium' }}</td>
+                    <td>{{ studentToTravelPath.landingTimeOfArrival | date:'medium' }}</td>
+                    <td>{{ studentToTravelPath.boardingTimeOfReturn | date:'medium' }}</td>
+                    <td>{{ studentToTravelPath.landingTimeOfReturn | date:'medium' }}</td>
+                    <td>{{ studentToTravelPath.enabled }}</td>
+                    <td>
+                        <div *ngIf="studentToTravelPath.studentId">
+                            <a [routerLink]="['/student', studentToTravelPath.studentId , 'view']" >{{ studentToTravelPath.studentTcId }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="studentToTravelPath.travelPathId">
+                            <a [routerLink]="['/travel-path', studentToTravelPath.travelPathId , 'view']" >{{ studentToTravelPath.travelPathName }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/student-to-travel-path', studentToTravelPath.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/student-to-travel-path', studentToTravelPath.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(studentToTravelPath)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="studentToTravelPaths?.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="studentToTravelPath">
+            <h2><span jhiTranslate="ststakipApp.studentToTravelPath.detail.title">Student To Travel Path</span> {{ studentToTravelPath.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="ststakipApp.studentToTravelPath.boardingTimeOfArrival">Boarding Time Of Arrival</span></dt>
+                <dd>
+                    <span>{{ studentToTravelPath.boardingTimeOfArrival }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.studentToTravelPath.landingTimeOfArrival">Landing Time Of Arrival</span></dt>
+                <dd>
+                    <span>{{ studentToTravelPath.landingTimeOfArrival }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.studentToTravelPath.boardingTimeOfReturn">Boarding Time Of Return</span></dt>
+                <dd>
+                    <span>{{ studentToTravelPath.boardingTimeOfReturn }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.studentToTravelPath.landingTimeOfReturn">Landing Time Of Return</span></dt>
+                <dd>
+                    <span>{{ studentToTravelPath.landingTimeOfReturn }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.studentToTravelPath.enabled">Enabled</span></dt>
+                <dd>
+                    <span>{{ studentToTravelPath.enabled }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.studentToTravelPath.student">Student</span></dt>
+                <dd>
+                    <div *ngIf="studentToTravelPath.studentId">
+                        <a [routerLink]="['/student', studentToTravelPath.studentId, 'view']">{{ studentToTravelPath.studentTcId }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.studentToTravelPath.travelPath">Travel Path</span></dt>
+                <dd>
+                    <div *ngIf="studentToTravelPath.travelPathId">
+                        <a [routerLink]="['/travel-path', studentToTravelPath.travelPathId, 'view']">{{ studentToTravelPath.travelPathName }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/student-to-travel-path', studentToTravelPath.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

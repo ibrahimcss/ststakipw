@@ -1,0 +1,54 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="orderPaket">
+            <h2><span jhiTranslate="ststakipApp.orderPaket.detail.title">Order Paket</span> {{ orderPaket.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="ststakipApp.orderPaket.orderedDate">Ordered Date</span></dt>
+                <dd>
+                    <span>{{ orderPaket.orderedDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.orderPaket.isExpired">Is Expired</span></dt>
+                <dd>
+                    <span>{{ orderPaket.isExpired }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.orderPaket.startDate">Start Date</span></dt>
+                <dd>
+                    <span>{{ orderPaket.startDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.orderPaket.endDate">End Date</span></dt>
+                <dd>
+                    <span>{{ orderPaket.endDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.orderPaket.company">Company</span></dt>
+                <dd>
+                    <div *ngIf="orderPaket.companyId">
+                        <a [routerLink]="['/company', orderPaket.companyId, 'view']">{{ orderPaket.companyName }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.orderPaket.paketDetay">Paket Detay</span></dt>
+                <dd>
+                    <div *ngIf="orderPaket.paketDetayId">
+                        <a [routerLink]="['/paket-detay', orderPaket.paketDetayId, 'view']">{{ orderPaket.paketDetayName }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/order-paket', orderPaket.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

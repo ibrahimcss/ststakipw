@@ -1,0 +1,106 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-works-in-heading" jhiTranslate="ststakipApp.worksIn.home.createOrEditLabel">Create or edit a Works In</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ststakipApp.worksIn.tcId" for="field_tcId">Tc Id</label>
+                    <input type="number" class="form-control" name="tcId" id="field_tcId"
+                           formControlName="tcId"/>
+                    <div *ngIf="editForm.get('tcId')!.invalid && (editForm.get('tcId')!.dirty || editForm.get('tcId')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('tcId')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('tcId')?.errors?.min" jhiTranslate="entity.validation.min" [translateValues]="{ min: 10000000000 }">
+                            This field should be at least 10000000000.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('tcId')?.errors?.max" jhiTranslate="entity.validation.max" [translateValues]="{ max: 99999999999 }">
+                            This field cannot be more than 99999999999.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('tcId')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ststakipApp.worksIn.phone" for="field_phone">Phone</label>
+                    <input type="text" class="form-control" name="phone" id="field_phone"
+                           formControlName="phone"/>
+                    <div *ngIf="editForm.get('phone')!.invalid && (editForm.get('phone')!.dirty || editForm.get('phone')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('phone')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('phone')?.errors?.pattern" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Phone' }">
+                            This field should follow pattern for "Phone".
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ststakipApp.worksIn.enabled" for="field_enabled">Enabled</label>
+                    <input type="checkbox" class="form-control" name="enabled" id="field_enabled"
+                           formControlName="enabled"/>
+                    <div *ngIf="editForm.get('enabled')!.invalid && (editForm.get('enabled')!.dirty || editForm.get('enabled')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('enabled')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ststakipApp.worksIn.employee" for="field_employee">Employee</label>
+                    <select class="form-control" id="field_employee" name="employee" formControlName="employeeId">
+                        <option *ngIf="!editForm.get('employeeId')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackById">{{ userOption.login }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('employeeId')!.invalid && (editForm.get('employeeId')!.dirty || editForm.get('employeeId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('employeeId')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ststakipApp.worksIn.company" for="field_company">Company</label>
+                    <select class="form-control" id="field_company" name="company" formControlName="companyId">
+                        <option *ngIf="!editForm.get('companyId')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="companyOption.id" *ngFor="let companyOption of companies; trackBy: trackById">{{ companyOption.name }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('companyId')!.invalid && (editForm.get('companyId')!.dirty || editForm.get('companyId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('companyId')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

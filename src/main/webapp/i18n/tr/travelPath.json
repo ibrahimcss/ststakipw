@@ -1,0 +1,36 @@
+{
+  "ststakipApp": {
+    "travelPath": {
+      "home": {
+        "title": "Travel Paths",
+        "createLabel": "Create a new Travel Path",
+        "createOrEditLabel": "Create or edit a Travel Path",
+        "search": "Search for Travel Path",
+        "notFound": "No Travel Paths found"
+      },
+      "created": "A new Travel Path is created with identifier {{ param }}",
+      "updated": "A Travel Path is updated with identifier {{ param }}",
+      "deleted": "A Travel Path is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Travel Path {{ id }}?"
+      },
+      "detail": {
+        "title": "Travel Path"
+      },
+      "name": "Name",
+      "departureTime": "Departure Time",
+      "departAddress": "Depart Address",
+      "departLon": "Depart Lon",
+      "departLat": "Depart Lat",
+      "arrivalTime": "Arrival Time",
+      "arrivalAddress": "Arrival Address",
+      "arrivalLon": "Arrival Lon",
+      "arrivalLat": "Arrival Lat",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "enabled": "Enabled",
+      "company": "Company",
+      "employee": "Employee"
+    }
+  }
+}

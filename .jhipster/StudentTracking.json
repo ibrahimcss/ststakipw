@@ -1,0 +1,85 @@
+{
+    "name": "StudentTracking",
+    "fields": [
+        {
+            "fieldName": "createdAt",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "photo",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "lon",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required",
+                "min",
+                "max"
+            ],
+            "fieldValidateRulesMin": "-180",
+            "fieldValidateRulesMax": "180"
+        },
+        {
+            "fieldName": "lat",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required",
+                "min",
+                "max"
+            ],
+            "fieldValidateRulesMin": "-90",
+            "fieldValidateRulesMax": "90"
+        },
+        {
+            "fieldName": "tStep",
+            "fieldType": "TrackingStep",
+            "fieldValues": "ArrivalBoarding,ArrivalLanding,ReturnBoarding,ReturnLanding",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "studentToTravelPath",
+            "otherEntityRelationshipName": "studentTracking",
+            "relationshipValidateRules": "required",
+            "relationshipName": "studentToTravelPath",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "vehicle",
+            "otherEntityRelationshipName": "studentTracking",
+            "relationshipValidateRules": "required",
+            "relationshipName": "vehicle",
+            "otherEntityField": "licencePlate"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "student",
+            "otherEntityRelationshipName": "studentTracking",
+            "relationshipValidateRules": "required",
+            "relationshipName": "student",
+            "otherEntityField": "tcId"
+        }
+    ],
+    "changelogDate": "20200216155732",
+    "entityTableName": "student_tracking",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": [
+        "ststakip"
+    ]
+}

@@ -1,0 +1,111 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-order-paket-heading" jhiTranslate="ststakipApp.orderPaket.home.createOrEditLabel">Create or edit a Order Paket</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ststakipApp.orderPaket.orderedDate" for="field_orderedDate">Ordered Date</label>
+                    <div class="d-flex">
+                        <input id="field_orderedDate" type="datetime-local" class="form-control" name="orderedDate" formControlName="orderedDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('orderedDate')!.invalid && (editForm.get('orderedDate')!.dirty || editForm.get('orderedDate')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('orderedDate')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('orderedDate')?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ststakipApp.orderPaket.isExpired" for="field_isExpired">Is Expired</label>
+                    <input type="checkbox" class="form-control" name="isExpired" id="field_isExpired"
+                           formControlName="isExpired"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ststakipApp.orderPaket.startDate" for="field_startDate">Start Date</label>
+                    <div class="d-flex">
+                        <input id="field_startDate" type="datetime-local" class="form-control" name="startDate" formControlName="startDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('startDate')!.invalid && (editForm.get('startDate')!.dirty || editForm.get('startDate')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('startDate')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('startDate')?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ststakipApp.orderPaket.endDate" for="field_endDate">End Date</label>
+                    <div class="d-flex">
+                        <input id="field_endDate" type="datetime-local" class="form-control" name="endDate" formControlName="endDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('endDate')!.invalid && (editForm.get('endDate')!.dirty || editForm.get('endDate')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('endDate')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('endDate')?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ststakipApp.orderPaket.company" for="field_company">Company</label>
+                    <select class="form-control" id="field_company" name="company" formControlName="companyId">
+                        <option *ngIf="!editForm.get('companyId')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="companyOption.id" *ngFor="let companyOption of companies; trackBy: trackById">{{ companyOption.name }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('companyId')!.invalid && (editForm.get('companyId')!.dirty || editForm.get('companyId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('companyId')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ststakipApp.orderPaket.paketDetay" for="field_paketDetay">Paket Detay</label>
+                    <select class="form-control" id="field_paketDetay" name="paketDetay" formControlName="paketDetayId">
+                        <option *ngIf="!editForm.get('paketDetayId')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="paketDetayOption.id" *ngFor="let paketDetayOption of paketdetays; trackBy: trackById">{{ paketDetayOption.name }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('paketDetayId')!.invalid && (editForm.get('paketDetayId')!.dirty || editForm.get('paketDetayId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('paketDetayId')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

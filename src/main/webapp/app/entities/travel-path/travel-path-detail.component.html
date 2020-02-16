@@ -1,0 +1,84 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="travelPath">
+            <h2><span jhiTranslate="ststakipApp.travelPath.detail.title">Travel Path</span> {{ travelPath.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="ststakipApp.travelPath.name">Name</span></dt>
+                <dd>
+                    <span>{{ travelPath.name }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.travelPath.departureTime">Departure Time</span></dt>
+                <dd>
+                    <span>{{ travelPath.departureTime }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.travelPath.departAddress">Depart Address</span></dt>
+                <dd>
+                    <span>{{ travelPath.departAddress }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.travelPath.departLon">Depart Lon</span></dt>
+                <dd>
+                    <span>{{ travelPath.departLon }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.travelPath.departLat">Depart Lat</span></dt>
+                <dd>
+                    <span>{{ travelPath.departLat }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.travelPath.arrivalTime">Arrival Time</span></dt>
+                <dd>
+                    <span>{{ travelPath.arrivalTime }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.travelPath.arrivalAddress">Arrival Address</span></dt>
+                <dd>
+                    <span>{{ travelPath.arrivalAddress }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.travelPath.arrivalLon">Arrival Lon</span></dt>
+                <dd>
+                    <span>{{ travelPath.arrivalLon }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.travelPath.arrivalLat">Arrival Lat</span></dt>
+                <dd>
+                    <span>{{ travelPath.arrivalLat }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.travelPath.startDate">Start Date</span></dt>
+                <dd>
+                    <span>{{ travelPath.startDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.travelPath.endDate">End Date</span></dt>
+                <dd>
+                    <span>{{ travelPath.endDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.travelPath.enabled">Enabled</span></dt>
+                <dd>
+                    <span>{{ travelPath.enabled }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.travelPath.company">Company</span></dt>
+                <dd>
+                    <div *ngIf="travelPath.companyId">
+                        <a [routerLink]="['/company', travelPath.companyId, 'view']">{{ travelPath.companyName }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.travelPath.employee">Employee</span></dt>
+                <dd>
+                    {{ travelPath.employeeLogin }}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/travel-path', travelPath.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

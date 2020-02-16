@@ -1,0 +1,30 @@
+{
+  "ststakipApp": {
+    "studentTracking": {
+      "home": {
+        "title": "Student Trackings",
+        "createLabel": "Create a new Student Tracking",
+        "createOrEditLabel": "Create or edit a Student Tracking",
+        "search": "Search for Student Tracking",
+        "notFound": "No Student Trackings found"
+      },
+      "created": "A new Student Tracking is created with identifier {{ param }}",
+      "updated": "A Student Tracking is updated with identifier {{ param }}",
+      "deleted": "A Student Tracking is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Student Tracking {{ id }}?"
+      },
+      "detail": {
+        "title": "Student Tracking"
+      },
+      "createdAt": "Created At",
+      "photo": "Photo",
+      "lon": "Lon",
+      "lat": "Lat",
+      "tStep": "T Step",
+      "studentToTravelPath": "Student To Travel Path",
+      "vehicle": "Vehicle",
+      "student": "Student"
+    }
+  }
+}

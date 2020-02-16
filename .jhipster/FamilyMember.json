@@ -1,0 +1,34 @@
+{
+    "name": "FamilyMember",
+    "fields": [],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "customerOf",
+            "otherEntityRelationshipName": "familyMember",
+            "relationshipValidateRules": "required",
+            "relationshipName": "parent",
+            "otherEntityField": "tcId"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "student",
+            "otherEntityRelationshipName": "familyMember",
+            "relationshipValidateRules": "required",
+            "relationshipName": "child",
+            "otherEntityField": "tcId"
+        }
+    ],
+    "changelogDate": "20200216160232",
+    "entityTableName": "family_member",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": [
+        "ststakip"
+    ]
+}

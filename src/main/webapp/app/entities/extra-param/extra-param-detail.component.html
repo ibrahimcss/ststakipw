@@ -1,0 +1,40 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="extraParam">
+            <h2><span jhiTranslate="ststakipApp.extraParam.detail.title">Extra Param</span> {{ extraParam.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="ststakipApp.extraParam.key">Key</span></dt>
+                <dd>
+                    <span>{{ extraParam.key }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.extraParam.value">Value</span></dt>
+                <dd>
+                    <span>{{ extraParam.value }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.extraParam.company">Company</span></dt>
+                <dd>
+                    <div *ngIf="extraParam.companyId">
+                        <a [routerLink]="['/company', extraParam.companyId, 'view']">{{ extraParam.companyName }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/extra-param', extraParam.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,134 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-student-to-travel-path-heading" jhiTranslate="ststakipApp.studentToTravelPath.home.createOrEditLabel">Create or edit a Student To Travel Path</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ststakipApp.studentToTravelPath.boardingTimeOfArrival" for="field_boardingTimeOfArrival">Boarding Time Of Arrival</label>
+                    <div class="d-flex">
+                        <input id="field_boardingTimeOfArrival" type="datetime-local" class="form-control" name="boardingTimeOfArrival" formControlName="boardingTimeOfArrival" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('boardingTimeOfArrival')!.invalid && (editForm.get('boardingTimeOfArrival')!.dirty || editForm.get('boardingTimeOfArrival')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('boardingTimeOfArrival')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('boardingTimeOfArrival')?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ststakipApp.studentToTravelPath.landingTimeOfArrival" for="field_landingTimeOfArrival">Landing Time Of Arrival</label>
+                    <div class="d-flex">
+                        <input id="field_landingTimeOfArrival" type="datetime-local" class="form-control" name="landingTimeOfArrival" formControlName="landingTimeOfArrival" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('landingTimeOfArrival')!.invalid && (editForm.get('landingTimeOfArrival')!.dirty || editForm.get('landingTimeOfArrival')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('landingTimeOfArrival')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('landingTimeOfArrival')?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ststakipApp.studentToTravelPath.boardingTimeOfReturn" for="field_boardingTimeOfReturn">Boarding Time Of Return</label>
+                    <div class="d-flex">
+                        <input id="field_boardingTimeOfReturn" type="datetime-local" class="form-control" name="boardingTimeOfReturn" formControlName="boardingTimeOfReturn" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('boardingTimeOfReturn')!.invalid && (editForm.get('boardingTimeOfReturn')!.dirty || editForm.get('boardingTimeOfReturn')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('boardingTimeOfReturn')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('boardingTimeOfReturn')?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ststakipApp.studentToTravelPath.landingTimeOfReturn" for="field_landingTimeOfReturn">Landing Time Of Return</label>
+                    <div class="d-flex">
+                        <input id="field_landingTimeOfReturn" type="datetime-local" class="form-control" name="landingTimeOfReturn" formControlName="landingTimeOfReturn" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('landingTimeOfReturn')!.invalid && (editForm.get('landingTimeOfReturn')!.dirty || editForm.get('landingTimeOfReturn')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('landingTimeOfReturn')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('landingTimeOfReturn')?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ststakipApp.studentToTravelPath.enabled" for="field_enabled">Enabled</label>
+                    <input type="checkbox" class="form-control" name="enabled" id="field_enabled"
+                           formControlName="enabled"/>
+                    <div *ngIf="editForm.get('enabled')!.invalid && (editForm.get('enabled')!.dirty || editForm.get('enabled')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('enabled')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ststakipApp.studentToTravelPath.student" for="field_student">Student</label>
+                    <select class="form-control" id="field_student" name="student" formControlName="studentId">
+                        <option *ngIf="!editForm.get('studentId')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="studentOption.id" *ngFor="let studentOption of students; trackBy: trackById">{{ studentOption.tcId }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('studentId')!.invalid && (editForm.get('studentId')!.dirty || editForm.get('studentId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('studentId')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ststakipApp.studentToTravelPath.travelPath" for="field_travelPath">Travel Path</label>
+                    <select class="form-control" id="field_travelPath" name="travelPath" formControlName="travelPathId">
+                        <option *ngIf="!editForm.get('travelPathId')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="travelPathOption.id" *ngFor="let travelPathOption of travelpaths; trackBy: trackById">{{ travelPathOption.name }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('travelPathId')!.invalid && (editForm.get('travelPathId')!.dirty || editForm.get('travelPathId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('travelPathId')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

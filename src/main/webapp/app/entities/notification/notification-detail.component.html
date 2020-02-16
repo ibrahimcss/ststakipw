@@ -1,0 +1,56 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="notification">
+            <h2><span jhiTranslate="ststakipApp.notification.detail.title">Notification</span> {{ notification.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="ststakipApp.notification.title">Title</span></dt>
+                <dd>
+                    <span>{{ notification.title }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.notification.message">Message</span></dt>
+                <dd>
+                    <span>{{ notification.message }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.notification.type">Type</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'ststakipApp.NotifyType.' + notification.type }}">{{ notification.type }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.notification.createdAt">Created At</span></dt>
+                <dd>
+                    <span>{{ notification.createdAt }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.notification.urlImage">Url Image</span></dt>
+                <dd>
+                    <span>{{ notification.urlImage }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.notification.isRead">Is Read</span></dt>
+                <dd>
+                    <span>{{ notification.isRead }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.notification.travelPath">Travel Path</span></dt>
+                <dd>
+                    <div *ngIf="notification.travelPathId">
+                        <a [routerLink]="['/travel-path', notification.travelPathId, 'view']">{{ notification.travelPathName }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/notification', notification.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

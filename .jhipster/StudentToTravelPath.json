@@ -1,0 +1,70 @@
+{
+    "name": "StudentToTravelPath",
+    "fields": [
+        {
+            "fieldName": "boardingTimeOfArrival",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "landingTimeOfArrival",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "boardingTimeOfReturn",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "landingTimeOfReturn",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "enabled",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "student",
+            "otherEntityRelationshipName": "studentToTravelPath",
+            "relationshipValidateRules": "required",
+            "relationshipName": "student",
+            "otherEntityField": "tcId"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "travelPath",
+            "otherEntityRelationshipName": "studentToTravelPath",
+            "relationshipValidateRules": "required",
+            "relationshipName": "travelPath",
+            "otherEntityField": "name"
+        }
+    ],
+    "changelogDate": "20200216155632",
+    "entityTableName": "student_to_travel_path",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": [
+        "ststakip"
+    ]
+}

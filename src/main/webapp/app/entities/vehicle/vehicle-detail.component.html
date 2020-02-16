@@ -1,0 +1,56 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="vehicle">
+            <h2><span jhiTranslate="ststakipApp.vehicle.detail.title">Vehicle</span> {{ vehicle.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="ststakipApp.vehicle.licencePlate">Licence Plate</span></dt>
+                <dd>
+                    <span>{{ vehicle.licencePlate }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.vehicle.brand">Brand</span></dt>
+                <dd>
+                    <span>{{ vehicle.brand }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.vehicle.model">Model</span></dt>
+                <dd>
+                    <span>{{ vehicle.model }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.vehicle.quota">Quota</span></dt>
+                <dd>
+                    <span>{{ vehicle.quota }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.vehicle.enabled">Enabled</span></dt>
+                <dd>
+                    <span>{{ vehicle.enabled }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.vehicle.company">Company</span></dt>
+                <dd>
+                    <div *ngIf="vehicle.companyId">
+                        <a [routerLink]="['/company', vehicle.companyId, 'view']">{{ vehicle.companyName }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.vehicle.credential">Credential</span></dt>
+                <dd>
+                    {{ vehicle.credentialLogin }}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/vehicle', vehicle.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

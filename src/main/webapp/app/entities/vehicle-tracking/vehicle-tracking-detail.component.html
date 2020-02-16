@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="vehicleTracking">
+            <h2><span jhiTranslate="ststakipApp.vehicleTracking.detail.title">Vehicle Tracking</span> {{ vehicleTracking.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="ststakipApp.vehicleTracking.createdAt">Created At</span></dt>
+                <dd>
+                    <span>{{ vehicleTracking.createdAt }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.vehicleTracking.lon">Lon</span></dt>
+                <dd>
+                    <span>{{ vehicleTracking.lon }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.vehicleTracking.lat">Lat</span></dt>
+                <dd>
+                    <span>{{ vehicleTracking.lat }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.vehicleTracking.vehicle">Vehicle</span></dt>
+                <dd>
+                    <div *ngIf="vehicleTracking.vehicleId">
+                        <a [routerLink]="['/vehicle', vehicleTracking.vehicleId, 'view']">{{ vehicleTracking.vehicleLicencePlate }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.vehicleTracking.company">Company</span></dt>
+                <dd>
+                    <div *ngIf="vehicleTracking.companyId">
+                        <a [routerLink]="['/company', vehicleTracking.companyId, 'view']">{{ vehicleTracking.companyName }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/vehicle-tracking', vehicleTracking.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

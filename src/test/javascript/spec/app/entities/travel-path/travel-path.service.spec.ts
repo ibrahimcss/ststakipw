@@ -1,0 +1,178 @@
+import { TestBed, getTestBed } from '@angular/core/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import * as moment from 'moment';
+import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
+import { TravelPathService } from 'app/entities/travel-path/travel-path.service';
+import { ITravelPath, TravelPath } from 'app/shared/model/travel-path.model';
+
+describe('Service Tests', () => {
+  describe('TravelPath Service', () => {
+    let injector: TestBed;
+    let service: TravelPathService;
+    let httpMock: HttpTestingController;
+    let elemDefault: ITravelPath;
+    let expectedResult: ITravelPath | ITravelPath[] | boolean | null;
+    let currentDate: moment.Moment;
+
+    beforeEach(() => {
+      TestBed.configureTestingModule({
+        imports: [HttpClientTestingModule]
+      });
+      expectedResult = null;
+      injector = getTestBed();
+      service = injector.get(TravelPathService);
+      httpMock = injector.get(HttpTestingController);
+      currentDate = moment();
+
+      elemDefault = new TravelPath(
+        0,
+        'AAAAAAA',
+        currentDate,
+        'AAAAAAA',
+        0,
+        0,
+        currentDate,
+        'AAAAAAA',
+        0,
+        0,
+        currentDate,
+        currentDate,
+        false
+      );
+    });
+
+    describe('Service methods', () => {
+      it('should find an element', () => {
+        const returnedFromService = Object.assign(
+          {
+            departureTime: currentDate.format(DATE_TIME_FORMAT),
+            arrivalTime: currentDate.format(DATE_TIME_FORMAT),
+            startDate: currentDate.format(DATE_TIME_FORMAT),
+            endDate: currentDate.format(DATE_TIME_FORMAT)
+          },
+          elemDefault
+        );
+
+        service.find(123).subscribe(resp => (expectedResult = resp.body));
+
+        const req = httpMock.expectOne({ method: 'GET' });
+        req.flush(returnedFromService);
+        expect(expectedResult).toMatchObject(elemDefault);
+      });
+
+      it('should create a TravelPath', () => {
+        const returnedFromService = Object.assign(
+          {
+            id: 0,
+            departureTime: currentDate.format(DATE_TIME_FORMAT),
+            arrivalTime: currentDate.format(DATE_TIME_FORMAT),
+            startDate: currentDate.format(DATE_TIME_FORMAT),
+            endDate: currentDate.format(DATE_TIME_FORMAT)
+          },
+          elemDefault
+        );
+
+        const expected = Object.assign(
+          {
+            departureTime: currentDate,
+            arrivalTime: currentDate,
+            startDate: currentDate,
+            endDate: currentDate
+          },
+          returnedFromService
+        );
+
+        service.create(new TravelPath()).subscribe(resp => (expectedResult = resp.body));
+
+        const req = httpMock.expectOne({ method: 'POST' });
+        req.flush(returnedFromService);
+        expect(expectedResult).toMatchObject(expected);
+      });
+
+      it('should update a TravelPath', () => {
+        const returnedFromService = Object.assign(
+          {
+            name: 'BBBBBB',
+            departureTime: currentDate.format(DATE_TIME_FORMAT),
+            departAddress: 'BBBBBB',
+            departLon: 1,
+            departLat: 1,
+            arrivalTime: currentDate.format(DATE_TIME_FORMAT),
+            arrivalAddress: 'BBBBBB',
+            arrivalLon: 1,
+            arrivalLat: 1,
+            startDate: currentDate.format(DATE_TIME_FORMAT),
+            endDate: currentDate.format(DATE_TIME_FORMAT),
+            enabled: true
+          },
+          elemDefault
+        );
+
+        const expected = Object.assign(
+          {
+            departureTime: currentDate,
+            arrivalTime: currentDate,
+            startDate: currentDate,
+            endDate: currentDate
+          },
+          returnedFromService
+        );
+
+        service.update(expected).subscribe(resp => (expectedResult = resp.body));
+
+        const req = httpMock.expectOne({ method: 'PUT' });
+        req.flush(returnedFromService);
+        expect(expectedResult).toMatchObject(expected);
+      });
+
+      it('should return a list of TravelPath', () => {
+        const returnedFromService = Object.assign(
+          {
+            name: 'BBBBBB',
+            departureTime: currentDate.format(DATE_TIME_FORMAT),
+            departAddress: 'BBBBBB',
+            departLon: 1,
+            departLat: 1,
+            arrivalTime: currentDate.format(DATE_TIME_FORMAT),
+            arrivalAddress: 'BBBBBB',
+            arrivalLon: 1,
+            arrivalLat: 1,
+            startDate: currentDate.format(DATE_TIME_FORMAT),
+            endDate: currentDate.format(DATE_TIME_FORMAT),
+            enabled: true
+          },
+          elemDefault
+        );
+
+        const expected = Object.assign(
+          {
+            departureTime: currentDate,
+            arrivalTime: currentDate,
+            startDate: currentDate,
+            endDate: currentDate
+          },
+          returnedFromService
+        );
+
+        service.query().subscribe(resp => (expectedResult = resp.body));
+
+        const req = httpMock.expectOne({ method: 'GET' });
+        req.flush([returnedFromService]);
+        httpMock.verify();
+        expect(expectedResult).toContainEqual(expected);
+      });
+
+      it('should delete a TravelPath', () => {
+        service.delete(123).subscribe(resp => (expectedResult = resp.ok));
+
+        const req = httpMock.expectOne({ method: 'DELETE' });
+        req.flush({ status: 200 });
+        expect(expectedResult);
+      });
+    });
+
+    afterEach(() => {
+      httpMock.verify();
+    });
+  });
+});

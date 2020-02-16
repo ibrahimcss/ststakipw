@@ -1,0 +1,11 @@
+{
+  "ststakipApp": {
+    "TrackingStep": {
+      "null": "",
+      "ArrivalBoarding": "ArrivalBoarding",
+      "ArrivalLanding": "ArrivalLanding",
+      "ReturnBoarding": "ReturnBoarding",
+      "ReturnLanding": "ReturnLanding"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+id;name;description;price;vehicle_quota;photo;photo_content_type;enabled;year
+1;Gold;recontextualize bleeding-edge hack;29997;199;../fake-data/blob/hipster.png;image/png;true;58038
+2;Basic;invoice compress Health;4520;578;../fake-data/blob/hipster.png;image/png;false;22384
+3;Basic;Center;13201;251;../fake-data/blob/hipster.png;image/png;true;92290
+4;Silver;Sleek;74039;45;../fake-data/blob/hipster.png;image/png;true;17147
+5;Silver;Officer mobile;30511;535;../fake-data/blob/hipster.png;image/png;false;234
+6;Gold;panel;56863;90;../fake-data/blob/hipster.png;image/png;false;63547
+7;Silver;Small Concrete Chair Chair mobile;2320;660;../fake-data/blob/hipster.png;image/png;false;20706
+8;Silver;Wallis and Futuna;88157;687;../fake-data/blob/hipster.png;image/png;false;36716
+9;Silver;web-enabled Syrian Pound Guinea Franc;39237;369;../fake-data/blob/hipster.png;image/png;false;54558
+10;Silver;collaboration;86379;70;../fake-data/blob/hipster.png;image/png;true;52445

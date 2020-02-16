@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity StudentToTravelPath.
+    -->
+    <changeSet id="20200216155632-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="student_id"
+                                 baseTableName="student_to_travel_path"
+                                 constraintName="fk_student_to_travel_path_student_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="student"/>
+
+        <addForeignKeyConstraint baseColumnNames="travel_path_id"
+                                 baseTableName="student_to_travel_path"
+                                 constraintName="fk_student_to_travel_path_travel_path_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="travel_path"/>
+
+    </changeSet>
+</databaseChangeLog>

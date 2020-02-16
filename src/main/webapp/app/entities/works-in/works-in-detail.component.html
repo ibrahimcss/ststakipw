@@ -1,0 +1,48 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="worksIn">
+            <h2><span jhiTranslate="ststakipApp.worksIn.detail.title">Works In</span> {{ worksIn.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="ststakipApp.worksIn.tcId">Tc Id</span></dt>
+                <dd>
+                    <span>{{ worksIn.tcId }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.worksIn.phone">Phone</span></dt>
+                <dd>
+                    <span>{{ worksIn.phone }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.worksIn.enabled">Enabled</span></dt>
+                <dd>
+                    <span>{{ worksIn.enabled }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.worksIn.employee">Employee</span></dt>
+                <dd>
+                    {{ worksIn.employeeLogin }}
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.worksIn.company">Company</span></dt>
+                <dd>
+                    <div *ngIf="worksIn.companyId">
+                        <a [routerLink]="['/company', worksIn.companyId, 'view']">{{ worksIn.companyName }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/works-in', worksIn.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

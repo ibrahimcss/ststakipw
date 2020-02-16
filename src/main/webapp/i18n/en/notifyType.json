@@ -1,0 +1,10 @@
+{
+  "ststakipApp": {
+    "NotifyType": {
+      "null": "",
+      "Info": "Info",
+      "Campaign": "Campaign",
+      "Emergency": "Emergency"
+    }
+  }
+}

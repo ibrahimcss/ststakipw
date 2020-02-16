@@ -1,0 +1,29 @@
+{
+  "ststakipApp": {
+    "studentToTravelPath": {
+      "home": {
+        "title": "Student To Travel Paths",
+        "createLabel": "Create a new Student To Travel Path",
+        "createOrEditLabel": "Create or edit a Student To Travel Path",
+        "search": "Search for Student To Travel Path",
+        "notFound": "No Student To Travel Paths found"
+      },
+      "created": "A new Student To Travel Path is created with identifier {{ param }}",
+      "updated": "A Student To Travel Path is updated with identifier {{ param }}",
+      "deleted": "A Student To Travel Path is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Student To Travel Path {{ id }}?"
+      },
+      "detail": {
+        "title": "Student To Travel Path"
+      },
+      "boardingTimeOfArrival": "Boarding Time Of Arrival",
+      "landingTimeOfArrival": "Landing Time Of Arrival",
+      "boardingTimeOfReturn": "Boarding Time Of Return",
+      "landingTimeOfReturn": "Landing Time Of Return",
+      "enabled": "Enabled",
+      "student": "Student",
+      "travelPath": "Travel Path"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-family-member-heading" jhiTranslate="ststakipApp.familyMember.home.createOrEditLabel">Create or edit a Family Member</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ststakipApp.familyMember.parent" for="field_parent">Parent</label>
+                    <select class="form-control" id="field_parent" name="parent" formControlName="parentId">
+                        <option *ngIf="!editForm.get('parentId')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="customerOfOption.id" *ngFor="let customerOfOption of customerofs; trackBy: trackById">{{ customerOfOption.tcId }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('parentId')!.invalid && (editForm.get('parentId')!.dirty || editForm.get('parentId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('parentId')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ststakipApp.familyMember.child" for="field_child">Child</label>
+                    <select class="form-control" id="field_child" name="child" formControlName="childId">
+                        <option *ngIf="!editForm.get('childId')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="studentOption.id" *ngFor="let studentOption of students; trackBy: trackById">{{ studentOption.tcId }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('childId')!.invalid && (editForm.get('childId')!.dirty || editForm.get('childId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('childId')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

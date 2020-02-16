@@ -1,0 +1,9 @@
+{
+  "ststakipApp": {
+    "Sex": {
+      "null": "",
+      "Male": "Male",
+      "Female": "Female"
+    }
+  }
+}

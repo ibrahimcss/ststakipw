@@ -1,0 +1,27 @@
+{
+  "ststakipApp": {
+    "vehicleTracking": {
+      "home": {
+        "title": "Vehicle Trackings",
+        "createLabel": "Create a new Vehicle Tracking",
+        "createOrEditLabel": "Create or edit a Vehicle Tracking",
+        "search": "Search for Vehicle Tracking",
+        "notFound": "No Vehicle Trackings found"
+      },
+      "created": "A new Vehicle Tracking is created with identifier {{ param }}",
+      "updated": "A Vehicle Tracking is updated with identifier {{ param }}",
+      "deleted": "A Vehicle Tracking is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Vehicle Tracking {{ id }}?"
+      },
+      "detail": {
+        "title": "Vehicle Tracking"
+      },
+      "createdAt": "Created At",
+      "lon": "Lon",
+      "lat": "Lat",
+      "vehicle": "Vehicle",
+      "company": "Company"
+    }
+  }
+}

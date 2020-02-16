@@ -1,0 +1,28 @@
+{
+  "ststakipApp": {
+    "orderPaket": {
+      "home": {
+        "title": "Order Pakets",
+        "createLabel": "Create a new Order Paket",
+        "createOrEditLabel": "Create or edit a Order Paket",
+        "search": "Search for Order Paket",
+        "notFound": "No Order Pakets found"
+      },
+      "created": "A new Order Paket is created with identifier {{ param }}",
+      "updated": "A Order Paket is updated with identifier {{ param }}",
+      "deleted": "A Order Paket is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Order Paket {{ id }}?"
+      },
+      "detail": {
+        "title": "Order Paket"
+      },
+      "orderedDate": "Ordered Date",
+      "isExpired": "Is Expired",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "company": "Company",
+      "paketDetay": "Paket Detay"
+    }
+  }
+}

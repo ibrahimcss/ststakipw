@@ -1,0 +1,24 @@
+{
+  "ststakipApp": {
+    "familyMember": {
+      "home": {
+        "title": "Family Members",
+        "createLabel": "Create a new Family Member",
+        "createOrEditLabel": "Create or edit a Family Member",
+        "search": "Search for Family Member",
+        "notFound": "No Family Members found"
+      },
+      "created": "A new Family Member is created with identifier {{ param }}",
+      "updated": "A Family Member is updated with identifier {{ param }}",
+      "deleted": "A Family Member is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Family Member {{ id }}?"
+      },
+      "detail": {
+        "title": "Family Member"
+      },
+      "parent": "Parent",
+      "child": "Child"
+    }
+  }
+}

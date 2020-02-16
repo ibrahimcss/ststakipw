@@ -1,0 +1,11 @@
+id;created_at;photo;photo_content_type;lon;lat;t_step;student_to_travel_path_id;vehicle_id;student_id
+1;2020-02-15T22:51:51;../fake-data/blob/hipster.png;image/png;42;18;ArrivalBoarding;1;1;1
+2;2020-02-16T07:35:32;../fake-data/blob/hipster.png;image/png;-99;82;ArrivalLanding;2;2;2
+3;2020-02-16T06:40:21;../fake-data/blob/hipster.png;image/png;130;44;ArrivalBoarding;3;3;3
+4;2020-02-15T21:53:07;../fake-data/blob/hipster.png;image/png;-141;-63;ArrivalLanding;4;4;4
+5;2020-02-16T10:11:43;../fake-data/blob/hipster.png;image/png;87;-89;ReturnBoarding;5;5;5
+6;2020-02-16T11:06:39;../fake-data/blob/hipster.png;image/png;-12;-81;ArrivalBoarding;6;6;6
+7;2020-02-16T01:24:12;../fake-data/blob/hipster.png;image/png;153;25;ArrivalBoarding;7;7;7
+8;2020-02-15T23:34:51;../fake-data/blob/hipster.png;image/png;-159;62;ReturnLanding;8;8;8
+9;2020-02-15T18:37:04;../fake-data/blob/hipster.png;image/png;53;15;ArrivalBoarding;9;9;9
+10;2020-02-16T10:20:13;../fake-data/blob/hipster.png;image/png;-71;-54;ArrivalBoarding;10;10;10

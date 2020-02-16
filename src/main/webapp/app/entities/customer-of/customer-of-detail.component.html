@@ -1,0 +1,52 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="customerOf">
+            <h2><span jhiTranslate="ststakipApp.customerOf.detail.title">Customer Of</span> {{ customerOf.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="ststakipApp.customerOf.tcId">Tc Id</span></dt>
+                <dd>
+                    <span>{{ customerOf.tcId }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.customerOf.phone">Phone</span></dt>
+                <dd>
+                    <span>{{ customerOf.phone }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.customerOf.enabled">Enabled</span></dt>
+                <dd>
+                    <span>{{ customerOf.enabled }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.customerOf.sex">Sex</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'ststakipApp.Sex.' + customerOf.sex }}">{{ customerOf.sex }}</span>
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.customerOf.customer">Customer</span></dt>
+                <dd>
+                    {{ customerOf.customerLogin }}
+                </dd>
+                <dt><span jhiTranslate="ststakipApp.customerOf.company">Company</span></dt>
+                <dd>
+                    <div *ngIf="customerOf.companyId">
+                        <a [routerLink]="['/company', customerOf.companyId, 'view']">{{ customerOf.companyName }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/customer-of', customerOf.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

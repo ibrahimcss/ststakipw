@@ -1,0 +1,29 @@
+{
+  "ststakipApp": {
+    "paketDetay": {
+      "home": {
+        "title": "Paket Detays",
+        "createLabel": "Create a new Paket Detay",
+        "createOrEditLabel": "Create or edit a Paket Detay",
+        "search": "Search for Paket Detay",
+        "notFound": "No Paket Detays found"
+      },
+      "created": "A new Paket Detay is created with identifier {{ param }}",
+      "updated": "A Paket Detay is updated with identifier {{ param }}",
+      "deleted": "A Paket Detay is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Paket Detay {{ id }}?"
+      },
+      "detail": {
+        "title": "Paket Detay"
+      },
+      "name": "Name",
+      "description": "Description",
+      "price": "Price",
+      "vehicleQuota": "Vehicle Quota",
+      "photo": "Photo",
+      "enabled": "Enabled",
+      "year": "Year"
+    }
+  }
+}
