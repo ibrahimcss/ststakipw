@@ -1,18 +1,26 @@
 package com.sts.service;
 
+import com.google.gson.Gson;
+import com.sts.domain.QVehicle;
+import com.sts.domain.User;
 import com.sts.domain.Vehicle;
+import com.sts.domain.WorksIn;
 import com.sts.repository.VehicleRepository;
 import com.sts.repository.search.VehicleSearchRepository;
+import com.sts.security.AuthoritiesConstants;
+import com.sts.security.SecurityUtils;
 import com.sts.service.dto.VehicleDTO;
 import com.sts.service.mapper.VehicleMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.elasticsearch.index.query.QueryBuilders.*;
@@ -31,6 +39,12 @@ public class VehicleService {
     private final VehicleMapper vehicleMapper;
 
     private final VehicleSearchRepository vehicleSearchRepository;
+
+    @Autowired
+    UserService userService;
+
+    @Autowired
+    WorksInService worksInService;
 
     public VehicleService(VehicleRepository vehicleRepository, VehicleMapper vehicleMapper, VehicleSearchRepository vehicleSearchRepository) {
         this.vehicleRepository = vehicleRepository;
@@ -62,6 +76,37 @@ public class VehicleService {
     @Transactional(readOnly = true)
     public Page<VehicleDTO> findAll(Pageable pageable) {
         log.debug("Request to get all Vehicles");
+
+        QVehicle qVehicle=  QVehicle.vehicle;
+        String login = SecurityUtils.getCurrentUserLogin().get();
+        User user = userService.getUserWithAuthoritiesByLogin(login).get();
+
+        if(SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)){
+            return vehicleRepository.findAll(pageable)
+                .map(vehicleMapper::toDto);
+        }
+       /* else  if(SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.MODERATOR))
+        {
+            WorksIn worksIn = worksInService.findByEmployeeId(user.getId());
+
+            System.out.println(user.getLogin() + " " + user.getId());
+            System.out.println(new Gson().toJson(worksIn));
+
+            return vehicleRepository.findAll(qVehicle.company.id.eq(worksIn.getCompany().getId()), pageable)
+                .map(vehicleMapper::toDto);
+
+
+        }*/
+        else  if(SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.MODERATOR))
+        {
+            WorksIn worksIn = worksInService.findByEmployeeIsCurrentUser();
+            return vehicleRepository.findAll(qVehicle.company.id.eq(worksIn.getCompany().getId()), pageable)
+                .map(vehicleMapper::toDto);
+
+
+        }
+
+
         return vehicleRepository.findAll(pageable)
             .map(vehicleMapper::toDto);
     }

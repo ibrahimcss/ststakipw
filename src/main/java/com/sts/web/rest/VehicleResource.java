@@ -1,5 +1,6 @@
 package com.sts.web.rest;
 
+import com.sts.security.AuthoritiesConstants;
 import com.sts.service.VehicleService;
 import com.sts.web.rest.errors.BadRequestAlertException;
 import com.sts.service.dto.VehicleDTO;
@@ -14,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -93,6 +95,7 @@ public class VehicleResource {
      * @param pageable the pagination information.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of vehicles in body.
      */
+    @PreAuthorize("hasAnyRole(\"" + AuthoritiesConstants.ADMIN + "\", \""+AuthoritiesConstants.MODERATOR+"\")")
     @GetMapping("/vehicles")
     public ResponseEntity<List<VehicleDTO>> getAllVehicles(Pageable pageable) {
         log.debug("REST request to get a page of Vehicles");

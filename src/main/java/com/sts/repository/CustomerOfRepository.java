@@ -3,6 +3,7 @@ package com.sts.repository;
 import com.sts.domain.CustomerOf;
 
 import org.springframework.data.jpa.repository.*;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface CustomerOfRepository extends JpaRepository<CustomerOf, Long> {
+public interface CustomerOfRepository extends JpaRepository<CustomerOf, Long>, QuerydslPredicateExecutor<CustomerOf> {
 
     @Query("select customerOf from CustomerOf customerOf where customerOf.customer.login = ?#{principal.username}")
     List<CustomerOf> findByCustomerIsCurrentUser();

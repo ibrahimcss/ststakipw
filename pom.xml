@@ -359,6 +359,16 @@
             <scope>test</scope>
         </dependency>
         <!-- jhipster-needle-maven-add-dependency -->
+        <dependency>
+            <groupId>com.querydsl</groupId>
+            <artifactId>querydsl-jpa</artifactId>
+            <version>4.2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.querydsl</groupId>
+            <artifactId>querydsl-apt</artifactId>
+            <version>4.2.2</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -372,6 +382,7 @@
             </testResource>
         </testResources>
         <plugins>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -444,6 +455,7 @@
         </plugins>
         <pluginManagement>
             <plugins>
+
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-checkstyle-plugin</artifactId>
@@ -927,6 +939,7 @@
 
                 </plugin>
                 <!-- jhipster-needle-maven-add-plugin-management -->
+
             </plugins>
         </pluginManagement>
     </build>
@@ -958,6 +971,24 @@
             </dependencies>
             <build>
                 <plugins>
+                    <!--Plugin for query-dsl-->
+                    <plugin>
+                        <groupId>com.mysema.maven</groupId>
+                        <artifactId>apt-maven-plugin</artifactId>
+                        <version>1.1.3</version>
+                        <executions>
+                            <execution>
+                                <phase>generate-sources</phase>
+                                <goals>
+                                    <goal>process</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>target/generated-sources/</outputDirectory>
+                                    <processor>com.querydsl.apt.jpa.JPAAnnotationProcessor</processor>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
                     <plugin>
                         <groupId>com.github.eirslett</groupId>
                         <artifactId>frontend-maven-plugin</artifactId>
